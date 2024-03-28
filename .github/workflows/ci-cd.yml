@@ -24,8 +24,23 @@ jobs:
       - name: Test with Gradle
         run: ./gradlew test
 
+      - name: Make Directory
+        run: mkdir deploy
+
+      - name: Copy Jar
+        run: Copy-Item -Path ./build/libs/*.jar -Destination ./deploy
+        shell: pwsh
+
+      - name: Copy appspec.yml
+        run: Copy-Item -Path appspec.yml -Destination ./deploy
+        shell: pwsh
+
+      - name: Copy script
+        run: Copy-Item -Path ./scripts/*.sh -Destination ./deploy
+        shell: pwsh
+
       - name: Make zip file
-        run: Compress-Archive -Path ./build/libs/ci-cd-test.jar -DestinationPath ./build/libs/ci-cd-test.zip
+        run: Compress-Archive -Path ./deploy -DestinationPath ./build/libs/ci-cd-test.zip
         shell: pwsh
 
       - name: Configure AWS credentials

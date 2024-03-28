@@ -4,6 +4,10 @@ on:
   push:
     branches: [ main ]
 
+env:
+  S3_BUCKET_NAME: cointalk-deploy
+  AWS_REGION: ap-northeast-2
+
 jobs:
   build:
     runs-on: windows-latest
@@ -32,4 +36,4 @@ jobs:
           aws-region: ${{ secrets.AWS_REGION }}
 
       - name: Upload to S3
-        run: aws s3 cp --region ${{ secrets.AWS_REGION }} ./build/libs/ci-cd-test.jar s3://${{ secrets.S3_BUCKET_NAME }}/
+        run: aws s3 cp --region $AWS_REGION ./build/libs/ci-cd-test.jar s3://$S3_BUCKET_NAME/

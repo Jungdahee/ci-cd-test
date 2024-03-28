@@ -38,11 +38,9 @@ jobs:
         env:
           AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-        run: |
-          aws deploy create-deployment `
-          --application-name ci-cd `
-          --deployment-group-name ci-cd `
-          --file-exists-behavior OVERWRITE `
-          --s3-location bucket=ci-cd-test-202403281047,bundleType=jar,key=ci-cd-test.jar `
+        run: aws deploy create-deployment 
+          --application-name ci-cd
+          --deployment-group-name ci-cd
+          --file-exists-behavior OVERWRITE
+          --s3-location bucket=ci-cd-test-202403281047,bundleType=jar,key=ci-cd-test.jar
           --region ap-northeast-2
-        shell: pwsh

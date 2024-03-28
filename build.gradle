@@ -31,3 +31,9 @@ dependencies {
 tasks.named('test') {
 	useJUnitPlatform()
 }
+
+bootJar {
+	archivesBaseName = 'ci-cd-test'
+	archiveFileName = 'ci-cd-test.jar'
+	archiveVersion = "0.0.0"
+}

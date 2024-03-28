@@ -24,6 +24,10 @@ jobs:
       - name: Test with Gradle
         run: ./gradlew test
 
+      - name: Make zip file
+        run: Compress-Archive -Path ./build/libs/ci-cd-test.jar -DestinationPath ./build/libs/ci-cd-test.zip
+        shell: pwsh
+
       - name: Configure AWS credentials
         uses: aws-actions/configure-aws-credentials@v1
         with:
@@ -32,12 +36,12 @@ jobs:
           aws-region: ${{ secrets.AWS_REGION }}
 
       - name: Upload to S3
-        run: aws s3 cp --region ap-northeast-2 ./build/libs/ci-cd-test.jar s3://ci-cd-test-202403281047/ci-cd-test.jar
+        run: aws s3 cp --region ap-northeast-2 ./build/libs/ci-cd-test.zip s3://ci-cd-test-202403281047/ci-cd-test.zip
 
       - name: Deploy
         run: aws deploy create-deployment 
           --application-name ci-cd
           --deployment-group-name ci-cd
           --file-exists-behavior OVERWRITE
-          --s3-location bucket=ci-cd-test-202403281047,bundleType=jar,key=ci-cd-test.jar
+          --s3-location bucket=ci-cd-test-202403281047,bundleType=zip,key=ci-cd-test.zip
           --region ap-northeast-2

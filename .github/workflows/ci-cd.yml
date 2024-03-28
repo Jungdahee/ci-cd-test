@@ -5,7 +5,7 @@ on:
     branches: [ main ]
 
 env:
-  S3_BUCKET_NAME: cointalk-deploy
+  S3_BUCKET_NAME: ci-cd-test-202403281047
   AWS_REGION: ap-northeast-2
 
 jobs:

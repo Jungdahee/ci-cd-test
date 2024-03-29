@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/bash
 
 CURRENT_PID=$(pgrep -fla java | grep hayan | awk '{print $1}')
 

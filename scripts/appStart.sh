@@ -1,4 +1,4 @@
-#!/user/bin/bash
+#!/usr/bin/bash
 
 pkill -f ci-cd-test.jar
 

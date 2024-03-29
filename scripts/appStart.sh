@@ -1,6 +1,6 @@
-#!/usr/bin/bash
+#!/user/bin/bash
 
-pkill -f  ci-cd-test.jar
+pkill -f ci-cd-test.jar
 
 JAR_NAME=$(ls -tr /home/ec2-user/dev/ci-cd-test.jar | tail -n 1)
 chmod +x $JAR_NAME

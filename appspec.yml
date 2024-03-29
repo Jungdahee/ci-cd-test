@@ -13,10 +13,6 @@ permissions:
     group: root
 
 hooks:
-  BeforeInstall:
-    - location: beforeInstall.sh
-      timeout: 60
-      runas: root
   ApplicationStart:
     - location: appStart.sh
       timeout: 60
